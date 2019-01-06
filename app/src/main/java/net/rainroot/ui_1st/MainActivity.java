@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             mVibrator.vibrate(100);
             switch (item.getItemId()) {
                 case R.id.navigation_alarm_home:
+
                     setTitle(R.string.alarm_home);
                     mF_alarm_home.setVisibility(View.VISIBLE);
                     mF_alarm_home.setAnimation(animation);
