@@ -1,6 +1,8 @@
 package net.rainroot.ui_1st;
 
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,6 +15,8 @@ import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -21,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout mF_alarm_list;
     private FrameLayout mF_alarm_log;
     private FrameLayout mF_app_info;
+
+    private SQLiteDatabase sqldb;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -85,11 +91,45 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private SQLiteDatabase init_database(){
+        SQLiteDatabase db = null;
+        File file = new File(getFilesDir(),"contact.db");
+
+        try{
+            db = SQLiteDatabase.openOrCreateDatabase(file,null);
+
+        }catch (SQLiteException e){
+            e.printStackTrace();
+        }
+        if(db == null){
+            System.out.println("DB create failed."+file.getAbsolutePath());
+
+        }
+        return db;
+    }
+
+    private void init_table(){
+        if(sqldb != null){
+            String sqlCreateTbl =
+                    "CREATE TABLE IF NOT EXISTS CONTACT_T (" +
+                    "No"           + "INTEGER NOT NULL," +
+                    "NAME "         + "TEXT," +
+                    "PHONE "        + "TEXT," +
+                    "OVER20 "       + "INTEGER" + ")" ;
+
+            System.out.println(sqlCreateTbl) ;
+
+            sqldb.execSQL(sqlCreateTbl) ;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sqldb = init_database();
+
+        init_table();
 
         mF_alarm_home = (FrameLayout) findViewById(R.id.F_alarm_home);
         mF_alarm_list = (FrameLayout) findViewById(R.id.F_alarm_list);
