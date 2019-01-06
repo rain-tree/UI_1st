@@ -17,6 +17,11 @@ import android.widget.TextView;
 
 import java.io.File;
 
+import com.beardedhen.androidbootstrap.BootstrapAlert;
+import com.kyleduo.switchbutton.SwitchButton;
+
+
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
