@@ -20,7 +20,9 @@ import java.io.File;
 import com.beardedhen.androidbootstrap.BootstrapAlert;
 import com.kyleduo.switchbutton.SwitchButton;
 
+import android.os.Vibrator;
 
+import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SQLiteDatabase sqldb;
 
+    private Vibrator mVibrator;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Animation animation = new AlphaAnimation(0,1);
             animation.setDuration(1000);
+            mVibrator.vibrate(100);
             switch (item.getItemId()) {
                 case R.id.navigation_alarm_home:
                     setTitle(R.string.alarm_home);
@@ -127,13 +132,24 @@ public class MainActivity extends AppCompatActivity {
             sqldb.execSQL(sqlCreateTbl) ;
         }
     }
+
+    private void vibrate_test(){
+        long[] pattern = {0,500,200,200,100,200,300,0,1000,30000};
+        mVibrator.vibrate(pattern,01);
+        try {
+            sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        mVibrator.cancel();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         sqldb = init_database();
-
         init_table();
 
         mF_alarm_home = (FrameLayout) findViewById(R.id.F_alarm_home);
@@ -142,7 +158,8 @@ public class MainActivity extends AppCompatActivity {
         mF_alarm_log = (FrameLayout) findViewById(R.id.F_alarm_log);
         mF_app_info = (FrameLayout) findViewById(R.id.F_app_info);
 
-
+        mVibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+        //vibrate_test();
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_alarm_list);
