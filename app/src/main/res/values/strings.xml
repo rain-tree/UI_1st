@@ -1,6 +1,7 @@
 <resources>
     <string name="title_SNS_ALARM">자명종</string>
-    <string name="one_time_alarm">원타임 알람</string>
+    <string name="alarm_home">자명종</string>
+    <string name="alarm_onetime">원타임 알람</string>
     <string name="alarm_list">목록</string>
     <string name="alarm_log">기록</string>
     <string name="app_info">앱정보</string>

@@ -1,5 +1,6 @@
 package net.rainroot.ui_1st;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout mF_alarm_list;
     private FrameLayout mF_alarm_log;
     private FrameLayout mF_app_info;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
             animation.setDuration(1000);
             switch (item.getItemId()) {
                 case R.id.navigation_alarm_home:
+                    setTitle(R.string.alarm_home);
                     mF_alarm_home.setVisibility(View.VISIBLE);
                     mF_alarm_home.setAnimation(animation);
                     mF_alarm_list.setVisibility(View.INVISIBLE);
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     mF_app_info.setVisibility(View.INVISIBLE);
                     return true;
                 case R.id.navigation_alarm_onetime:
+                    setTitle(R.string.alarm_onetime);
                     mF_alarm_home.setVisibility(View.INVISIBLE);
                     mF_alarm_list.setVisibility(View.VISIBLE);
                     mF_alarm_onetime.setVisibility(View.INVISIBLE);
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     mF_alarm_list.setAnimation(animation);
                     return true;
                 case R.id.navigation_alarm_list:
+                    setTitle(R.string.alarm_list);
                     mF_alarm_home.setVisibility(View.INVISIBLE);
                     mF_alarm_list.setVisibility(View.INVISIBLE);
                     mF_alarm_onetime.setVisibility(View.VISIBLE);
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     mF_alarm_onetime.setAnimation(animation);
                     return true;
                 case R.id.navigation_alarm_log:
+                    setTitle(R.string.alarm_log);
                     mF_alarm_home.setVisibility(View.INVISIBLE);
                     mF_alarm_list.setVisibility(View.INVISIBLE);
                     mF_alarm_onetime.setVisibility(View.INVISIBLE);
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     mF_app_info.setVisibility(View.INVISIBLE);
                     return true;
                 case R.id.navigation_app_info:
+                    setTitle(R.string.app_info);
                     mF_alarm_home.setVisibility(View.INVISIBLE);
                     mF_alarm_list.setVisibility(View.INVISIBLE);
                     mF_alarm_onetime.setVisibility(View.INVISIBLE);
@@ -82,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mF_alarm_home = (FrameLayout) findViewById(R.id.F_alarm_home);
         mF_alarm_list = (FrameLayout) findViewById(R.id.F_alarm_list);
