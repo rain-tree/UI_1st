@@ -8,12 +8,12 @@
 
     <item
         android:id="@+id/navigation_alarm_onetime"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
         android:title="@string/alarm_onetime" />
 
     <item
         android:id="@+id/navigation_alarm_list"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_chrome_reader_mode_48px"
         android:title="@string/alarm_list" />
 
     <item
