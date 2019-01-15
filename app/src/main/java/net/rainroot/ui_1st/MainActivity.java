@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import com.beardedhen.androidbootstrap.BootstrapAlert;
 import com.kyleduo.switchbutton.SwitchButton;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private FrameLayout mF_alarm_home;
+    //private ListView mF_alarm_home;
     private FrameLayout mF_alarm_onetime;
     private FrameLayout mF_alarm_list;
     private FrameLayout mF_alarm_log;
@@ -153,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
         init_table();
 
         mF_alarm_home = (FrameLayout) findViewById(R.id.F_alarm_home);
+        //mF_alarm_home = (ListView)findViewById(R.id.F_alarm_home);
         mF_alarm_list = (FrameLayout) findViewById(R.id.F_alarm_list);
         mF_alarm_onetime = (FrameLayout) findViewById(R.id.F_alarm_onetime);
         mF_alarm_log = (FrameLayout) findViewById(R.id.F_alarm_log);
@@ -164,6 +169,21 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_alarm_list);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //FrameLayout framelayout = (FrameLayout)findViewById(R.id.F_alarm_home);
+        //ListView listView = (ListView)findViewById(R.id.F_alarm_home);
+        ArrayList<ListAlarmitem> data = new ArrayList<>();
+        ListAlarmitem st_1 = new ListAlarmitem(R.drawable.ic_3d_rotation_black_24dp,"알람 1 ");
+        ListAlarmitem st_2 = new ListAlarmitem(R.drawable.ic_access_alarms_black_24dp,"알람 2");
+
+        data.add(st_1);
+        data.add(st_2);
+
+        ListAlarmAdapter adapter = new ListAlarmAdapter(this,R.layout.item_alarm,data);
+        framelayout.setAdapter
+        //framelayout.setAdapter(adapter);
+        //listView.setAdapter((ListAdapter) adapter);
+
     }
 
 }
