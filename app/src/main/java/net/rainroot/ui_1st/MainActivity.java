@@ -14,6 +14,7 @@ import android.view.animation.Animation;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -30,10 +31,11 @@ import static java.lang.Thread.sleep;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-    private FrameLayout mF_alarm_home;
+    private RelativeLayout mF_alarm_home;
     //private ListView mF_alarm_home;
     private FrameLayout mF_alarm_onetime;
     private FrameLayout mF_alarm_list;
+    private ListView mL_alarm_list;
     private FrameLayout mF_alarm_log;
     private FrameLayout mF_app_info;
 
@@ -156,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         sqldb = init_database();
         init_table();
 
-        mF_alarm_home = (FrameLayout) findViewById(R.id.F_alarm_home);
+        mF_alarm_home = (RelativeLayout) findViewById(R.id.F_alarm_home);
         //mF_alarm_home = (ListView)findViewById(R.id.F_alarm_home);
         mF_alarm_list = (FrameLayout) findViewById(R.id.F_alarm_list);
         mF_alarm_onetime = (FrameLayout) findViewById(R.id.F_alarm_onetime);
@@ -171,18 +173,23 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //FrameLayout framelayout = (FrameLayout)findViewById(R.id.F_alarm_home);
-        //ListView listView = (ListView)findViewById(R.id.F_alarm_home);
+        ListView listView = (ListView)findViewById(R.id.L_alarm_list);
         ArrayList<ListAlarmitem> data = new ArrayList<>();
         ListAlarmitem st_1 = new ListAlarmitem(R.drawable.ic_3d_rotation_black_24dp,"알람 1 ");
         ListAlarmitem st_2 = new ListAlarmitem(R.drawable.ic_access_alarms_black_24dp,"알람 2");
+        ListAlarmitem st_3 = new ListAlarmitem(R.drawable.ic_access_alarms_black_24dp,"알람 3");
+        ListAlarmitem st_4 = new ListAlarmitem(R.drawable.ic_access_alarms_black_24dp,"알람 3");
+        ListAlarmitem st_5 = new ListAlarmitem(R.drawable.ic_access_alarms_black_24dp,"알람 3");
 
         data.add(st_1);
         data.add(st_2);
-
+        data.add(st_3);
+        data.add(st_4);
+        data.add(st_5);
         ListAlarmAdapter adapter = new ListAlarmAdapter(this,R.layout.item_alarm,data);
-        framelayout.setAdapter
+        //framelayout.setAdapter
         //framelayout.setAdapter(adapter);
-        //listView.setAdapter((ListAdapter) adapter);
+        listView.setAdapter((ListAdapter) adapter);
 
     }
 
