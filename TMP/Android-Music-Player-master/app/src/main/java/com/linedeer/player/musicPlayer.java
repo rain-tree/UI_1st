@@ -34,7 +34,7 @@ import android.widget.RemoteViews;
 import Views.radiusSqure;
 
 public class musicPlayer extends Service{
-	
+
 	IBinder binder;
 	public static  musicPlayer THIS;
 	public musicPlayer() {
@@ -86,17 +86,23 @@ public class musicPlayer extends Service{
 		super.onCreate();
 		//statusBar();
 
-		handler.mEvent.addEvent(new EventCall(new int[]{playerEvents.PLAYER_COMPLETE,playerEvents.SONG_CHANGED,playerEvents.PLAYING_FLIP}){
-			@Override
-			public void onCall(final int eventId) {
-				new Thread(){
+		handler.mEvent.addEvent(
+				new EventCall(
+						new int[]{
+								playerEvents.PLAYER_COMPLETE,playerEvents.SONG_CHANGED,playerEvents.PLAYING_FLIP
+						}
+				)
+				{
 					@Override
-					public void run() {
-						showNotification(eventId);
+					public void onCall(final int eventId) {
+						new Thread(){
+							@Override
+							public void run() {
+								showNotification(eventId);
+							}
+						}.start();
 					}
-				}.start();
-			}
-		});
+				});
 
 		showNotification(-1);
 	}
@@ -106,7 +112,7 @@ public class musicPlayer extends Service{
 
 		public SettingsContentObserver(Handler handler) {
 			super(handler);
-	}
+		}
 
 		@Override
 		public boolean deliverSelfNotifications() {
@@ -129,7 +135,7 @@ public class musicPlayer extends Service{
 		this.getContentResolver().unregisterContentObserver( mSettingsContentObserver );
 		super.onDestroy();
 	}
-	
+
 	@Override
 	public IBinder onBind(Intent intent) {
 		return binder;
@@ -288,7 +294,7 @@ public class musicPlayer extends Service{
 		Intent intent = new Intent(this,Ui.class);
 		intent.setAction(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_LAUNCHER);
-		
+
 		android.app.PendingIntent pi = android.app.PendingIntent.getActivity(this, 0, intent,   android.app.PendingIntent.FLAG_UPDATE_CURRENT);
 
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
