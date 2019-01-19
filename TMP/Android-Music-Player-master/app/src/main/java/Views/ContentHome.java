@@ -169,7 +169,7 @@ public class ContentHome extends FrameLayout {
 
 
 
-				//Log.i("My","SetX : " + alpha);
+				Log.i("My","SetX : " + alpha);
 			}
 		};
 		PlayLIstHome.setX(-(int)(PlayLIstHome.width));
@@ -215,7 +215,7 @@ public class ContentHome extends FrameLayout {
 					MainHome.FMcatch.setX(-(x- Ui.cd.DPW));
 				}
 
-				//Log.i("My","SetX : " + alpha);
+				Log.i("My","SetX : " + alpha);
 			}
 		};
 		QEq.setX(Ui.cd.DPW);
@@ -246,7 +246,7 @@ public class ContentHome extends FrameLayout {
 					MainHome.setVisibility(VISIBLE);
 				}
 				AlphaBack.setY(y-AlphaBack.height);
-				//Log.i("My","SetX : " + alpha);
+				Log.i("My","SetX : " + alpha);
 			}
 		};
 		MenuHome.setY(Ui.cd.DPH);

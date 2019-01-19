@@ -26,6 +26,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -145,9 +146,9 @@ public class Ui extends Activity {
 					height = V.getHeight();
 					ef = Ui.this;
 					cd = new config(getBaseContext(),V.getWidth(),V.getHeight());
-					data.saveCatch();
+					//data.saveCatch();
 					bk = new Backpress();
-					ONDONE();
+					//ONDONE();
 				}
 			});
 		}else{
@@ -170,7 +171,7 @@ public class Ui extends Activity {
 
 		hider = new FMlyt(getBaseContext(), cd.DPW, cd.DPH);
 		hider.setClickable(true);
-		//MH.addView(hider);
+		MH.addView(hider);
 
 		servInt = new Intent(getBaseContext(), musicPlayer.class);
 		startService(servInt);
@@ -219,7 +220,7 @@ public class Ui extends Activity {
 			MusicPlayer.handler.mEvent.addEvent(playerCall);
 			playerEvent.trigger(Event_onBind);
 			MH.removeView(hider);
-			//Log.i("My", "Massage bined..!");
+			Log.i("My", "Massage bined..!");
 		}
 	};
 

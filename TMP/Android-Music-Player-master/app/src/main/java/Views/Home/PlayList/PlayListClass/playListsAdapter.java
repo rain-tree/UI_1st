@@ -2,6 +2,7 @@ package Views.Home.PlayList.PlayListClass;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -26,6 +27,7 @@ public class playListsAdapter extends BaseAdapter {
     public List<String[]> data = new ArrayList<String[]>();
     FMlyt layout;
     public playListsAdapter(FMlyt layout){
+        Log.d("2 rainroot","#################################################");
         this.layout = layout;
         data = playlistHandler.getALlPlalists(Ui.ef.getContentResolver());
 

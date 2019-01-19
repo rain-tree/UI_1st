@@ -2,6 +2,7 @@ package Views.Library.Menu.SongsClass;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -28,6 +29,7 @@ public class playListsAdapter extends BaseAdapter {
     FMlyt layout;
     public playListsAdapter(FMlyt layout){
         this.layout = layout;
+        Log.d("3 rainroot","#################################################");
         data = playlistHandler.getALlPlalists(Ui.ef.getContentResolver());
         if(Ui.ef.MusicPlayer.handler.playlist.id == -1){
             data.add(0,new String[]{Ui.ef.MusicPlayer.handler.playlist.listName + " ( UNSAVED )","-1"});
@@ -139,6 +141,7 @@ public class playListsAdapter extends BaseAdapter {
                 nowText.setAlpha(0.5f);
                 nowText.img.P0.setColor(0xFFFFFFFF);
                 addView(nowText);
+
             }
             btnLine = new squre(layout.width, Ui.cd.getHt(2),0, Ui.cd.getHt(44-2));
             btnLine.setColor(0x12000000);

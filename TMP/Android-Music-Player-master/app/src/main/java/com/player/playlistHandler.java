@@ -5,8 +5,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
-import com.player.data.Playlist;
+//import com.player.data.Playlist;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class playlistHandler {
 
 
     public static ArrayList<String[]> getALlPlalists(ContentResolver Cr){
+        Log.d("rainroot","###########################################");
         ArrayList<String[]> list = new ArrayList<String[]>();
         Uri uri = MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI;
         String[] cols = new String[] {MediaStore.Audio.Playlists.NAME, MediaStore.Audio.Playlists._ID};
@@ -24,6 +26,7 @@ public class playlistHandler {
         for (int i = 0; i < length; i++) {
             DataCursor.moveToNext();
             String str = DataCursor.getString(0);
+            Log.d("4 rainroot",str);
             if(!str.startsWith(" ") && str.length() != 0){
                 list.add(new String[] {str,DataCursor.getInt(1)+""});
             }
@@ -99,6 +102,7 @@ public class playlistHandler {
             Name = DataCursor.getString(0);
         }
         DataCursor.close();
+        Log.d("5 rainroot",Name);
         return Name;
 
     }
@@ -163,10 +167,8 @@ public class playlistHandler {
 
         ContentValues values = new ContentValues();
         values.put(MediaStore.Audio.Playlists.NAME, str);
-        values.put(MediaStore.Audio.Playlists.DATE_ADDED,
-                System.currentTimeMillis());
-        values.put(MediaStore.Audio.Playlists.DATE_MODIFIED,
-                System.currentTimeMillis());
+        values.put(MediaStore.Audio.Playlists.DATE_ADDED, System.currentTimeMillis());
+        values.put(MediaStore.Audio.Playlists.DATE_MODIFIED, System.currentTimeMillis());
 
         Uri Got = Cr.insert(uri, values);
         return  Got;

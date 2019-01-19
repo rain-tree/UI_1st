@@ -1,11 +1,20 @@
 package net.rainroot.ui_1st;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +34,12 @@ import com.beardedhen.androidbootstrap.BootstrapAlert;
 import com.kyleduo.switchbutton.SwitchButton;
 
 import android.os.Vibrator;
+
+import net.rainroot.service.Event;
+import net.rainroot.service.EventCall;
+import net.rainroot.service.musicPlayer;
+import net.rainroot.service.playerEvents;
+import net.rainroot.service.servicesBinder;
 
 import static java.lang.Thread.sleep;
 
@@ -50,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Animation animation = new AlphaAnimation(0,1);
             animation.setDuration(1000);
+            mp.start();
             mVibrator.vibrate(100);
             switch (item.getItemId()) {
                 case R.id.navigation_alarm_home:
@@ -191,8 +207,74 @@ public class MainActivity extends AppCompatActivity {
         //framelayout.setAdapter(adapter);
         listView.setAdapter((ListAdapter) adapter);
 
+        mp = MediaPlayer.create(getBaseContext(), R.raw.tick); // '틱' 효과음..
+        checkPermission();
+    }
+    MediaPlayer mp;
+    public static MainActivity  ef;
+
+    Intent servInt;
+    public musicPlayer MusicPlayer;
+
+    public Event playerEvent;
+
+
+    public int Event_onPause = 101;
+    public int Event_onResume = 102;
+    public int Event_onDestroy = 103;
+    public int Event_onBind = 104;
+
+
+    public void clickPlay(){
+        mp.start();
     }
 
+    EventCall playerCall = new EventCall(null) {
+        @Override
+        public void onCall(final int arg) {
+            if(arg == playerEvents.PLAYER_EXIT){
+                MainActivity.this.finish();
+            }else{
+                MainActivity.ef.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerEvent.trigger(arg);
+                    }
+                });
+            }
+        }
+    };
+    ServiceConnection Sc = new ServiceConnection() {
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            servicesBinder mLocalBinder = (servicesBinder)service;
+            MusicPlayer = mLocalBinder.getServices();
+            MusicPlayer.handler.mEvent.addEvent(playerCall);
+//            playerEvent.trigger(Event_onBind);
+            //MH.removeView(hider);
+            //Log.i("My", "Massage bined..!");
+        }
+    };
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        checkPermission();
+    }
+
+    void checkPermission(){
+
+        //if (ContextCompat.checkSelfPermission(MainActivity.ef, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        //    ActivityCompat.requestPermissions( MainActivity.ef, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        //} else{
+            servInt = new Intent(getBaseContext(),musicPlayer.class);
+            startService(servInt);
+            bindService(servInt,Sc,BIND_ADJUST_WITH_ACTIVITY);
+            //init();
+        //}
+    }
 }
 
 
