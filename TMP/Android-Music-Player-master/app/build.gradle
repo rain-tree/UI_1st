@@ -1,0 +1,24 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        applicationId "com.linedeer.music.handler"
+        minSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:appcompat-v7:25.0.0'
+    implementation 'com.android.support:support-compat:25.0.0'
+    implementation 'com.android.support:palette-v7:25.0.0'
+}
