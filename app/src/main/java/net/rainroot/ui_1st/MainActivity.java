@@ -3,19 +3,26 @@ package net.rainroot.ui_1st;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase sqldb;
 
     private Vibrator mVibrator;
+
+    private Context mContext;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -208,7 +217,10 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter((ListAdapter) adapter);
 
         mp = MediaPlayer.create(getBaseContext(), R.raw.tick); // '틱' 효과음..
-        checkPermission();
+
+        getMusicData();
+
+        //checkPermission();
     }
     MediaPlayer mp;
     public static MainActivity  ef;
@@ -274,6 +286,45 @@ public class MainActivity extends AppCompatActivity {
             bindService(servInt,Sc,BIND_ADJUST_WITH_ACTIVITY);
             //init();
         //}
+    }
+
+    private void getMusicData(){
+        String[] projection = {
+                MediaStore.Audio.Media.IS_MUSIC,
+                MediaStore.Audio.Media.ALBUM_ID,
+                MediaStore.Audio.Media.TITLE,
+                MediaStore.Audio.Media.ARTIST,
+                MediaStore.Audio.Media._ID
+        };
+
+        ContentResolver contentResolver = mContext.getContentResolver();
+        Cursor cursor = contentResolver.query(
+                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                projection,
+                null,
+                null,
+                MediaStore.Audio.Media.TITLE+"ASC"
+        );
+
+        if(cursor != null){
+            try{
+                if(cursor.getInt(0) != 0){
+                    Uri sAtrworkUri = Uri.parse("content://media/external/audio/albumart");
+                    Uri uri = ContentUris.withAppendedId(sAtrworkUri,Integer.valueOf(cursor.getString(1)));
+
+                    Log.d("LIST-rain"," Title: "+cursor.getString(2)+" Singer "+cursor.getString(3)+" AlumId "+cursor.getString(1)+" MusicId "+cursor.getString(4));
+                    //data.setMusicImg(uri);
+                    //data.setMusicTitle(cursor.getString(2));
+                    //data.setSinger(cursor.getString(3));
+                    //data.setAlbumId(cursor.getString(1));
+                    //data.setMusicId(cursor.getString(4));
+
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
     }
 }
 
