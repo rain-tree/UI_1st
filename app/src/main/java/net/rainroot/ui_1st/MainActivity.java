@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         mp = MediaPlayer.create(getBaseContext(), R.raw.tick); // '틱' 효과음..
 
         //getMusicData();
-        getAllAudioFromDevice(this);
+        //getAllAudioFromDevice(this);
         //checkPermission();
     }
     MediaPlayer mp;
