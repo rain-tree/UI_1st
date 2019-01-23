@@ -9,11 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.MediaStore;
@@ -27,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -37,6 +40,7 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.beardedhen.androidbootstrap.BootstrapAlert;
 import com.kyleduo.switchbutton.SwitchButton;
@@ -221,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
         //getMusicData();
         //getAllAudioFromDevice(this);
-        //checkPermission();
+        checkPermission();
     }
     MediaPlayer mp;
     public static MainActivity  ef;
@@ -273,11 +277,55 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        checkPermission();
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        //int ret = VPN_SERVICE_PERMISSION_ALLOW;
+        int i=0;
+        for(i = 0 ; i < permissions.length;i++) {
+            Log.d("5. find_music","--------------------"+i);
+            //System.out.println(" requestcode " + VPN_SERVICE_PERMISSION_GROUP + " grantResult[0] " + grantResults[i] + " perm string[] " + permissions[i]);
+            if(grantResults[i] < 0){
+                //ret = VPN_SERVICE_PERMISSION_DNEY;
+                break;
+            }
+        }
+        //setResult(ret);
+        //finish();
     }
-
     void checkPermission(){
+        String[] str_permissions = new String[]{
+                Manifest.permission.INTERNET,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+                //Manifest.permission.INSTALL_PACKAGES,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.WAKE_LOCK,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+                //Manifest.permission.WRITE_SETTINGS,
+                //Manifest.permission.WRITE_SECURE_SETTINGS
+        };
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Log.d("1. find_music","--------------------");
+            ArrayList<String> notGrantPermissions = new ArrayList<>();
+            Log.d("2. find_music","--------------------");
+            for (String perm : str_permissions) {
+                Log.d("3. find_music","--------------------");
+                if (this.checkSelfPermission(perm) != PackageManager.PERMISSION_GRANTED) {
+                    Log.d("4. find_music","--------------------");
+                    notGrantPermissions.add(perm);
+                }
+            }
+            if(notGrantPermissions.isEmpty() == false) {
+                //requestPermissions(notGrantPermissions.toArray(new String[]{}), VPN_SERVICE_PERMISSION_GROUP);
+            }else{
+                //setResult(VPN_SERVICE_PERMISSION_ALLOW);
+                finish();
+            }
+        }else{
+            //setResult(VPN_SERVICE_PERMISSION_ALLOW);
+            finish();
+        }
 
         //if (ContextCompat.checkSelfPermission(MainActivity.ef, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
         //    ActivityCompat.requestPermissions( MainActivity.ef, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
@@ -287,8 +335,79 @@ public class MainActivity extends AppCompatActivity {
             bindService(servInt,Sc,BIND_ADJUST_WITH_ACTIVITY);
             //init();
         //}
+        find_music();
+        queryFiles(this);
     }
 
+    void find_music(){
+        Log.d("1. find_music","--------------------");
+        String path="";
+        Cursor music = getContentResolver().query(
+                android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                new String[]{ "_id", "_data" },
+                "is_music != 0",
+                null, null);
+
+        while ( music.moveToNext() )
+        {
+            path = music.getString(1).toLowerCase();
+            Log.d("2. find_music "," PATH: "+path);
+            //if ( path.contains(query) ) {
+                //adapter.add(music.getString(0) + ": " + music.getString(1));
+            //}
+        }
+    }
+
+    public static void queryFiles(Context context) {
+
+        // External 스토리지의 URI 획득
+        final Uri uri = MediaStore.Files.getContentUri("external");
+        //ID, 파일명, mimeType, 파일크기 을 가져오도록 설정
+        final String[] projection = new String[]
+                {
+                    MediaStore.Files.FileColumns._ID,
+                    MediaStore.Files.FileColumns.DISPLAY_NAME,
+                    MediaStore.Files.FileColumns.MIME_TYPE,
+                    MediaStore.Files.FileColumns.SIZE
+                };
+        //확장자가 txt인 mimeType을 쿼리
+        final String selection = MediaStore.Files.FileColumns.MIME_TYPE + "=?";
+        final String[] selectionArgs = new String[] {
+                    MimeTypeMap.getSingleton().getMimeTypeFromExtension("mp3")
+                };
+
+        // 쿼리 수행 후, 컬럼명, 값 출력
+        Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+        while (cursor != null && cursor.moveToNext()) {
+            int columnCount = cursor.getColumnCount();
+            for (int i = 0 ; i < columnCount ; i++ ) {
+                Log.d("queryFiles",cursor.getColumnName(i) + " : " + cursor.getString(i));
+            }
+            Log.d("queryFiles","----------------------------");
+        }
+    }
+
+    /*
+    public void asset_load(int resourceId) {
+        mResourceId = resourceId;
+        AssetFileDescriptor assetFileDescriptor =
+                mContext.getResources().openRawResourceFd(mResourceId);
+        try {
+            logToUI("load() {1. setDataSource}");
+            mMediaPlayer.setDataSource(assetFileDescriptor);
+        } catch (Exception e) {
+            logToUI(e.toString());
+        }
+
+        try {
+            logToUI("load() {2. prepare}");
+            mMediaPlayer.prepare();
+        } catch (Exception e) {
+            logToUI(e.toString());
+        }
+        initSeekbar();
+    }
+    */
 
     public List<AudioModel> getAllAudioFromDevice(final Context context) {
         final List<AudioModel> tempAudioList = new ArrayList<>();
