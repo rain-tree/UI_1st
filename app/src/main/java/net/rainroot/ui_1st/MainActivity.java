@@ -293,6 +293,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //setResult(ret);
         //finish();
+        //test
     }
     void checkPermission(){
         String[] str_permissions = new String[]{
