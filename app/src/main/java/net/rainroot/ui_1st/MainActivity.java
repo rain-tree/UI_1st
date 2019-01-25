@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
-        setResult(ret);
+        //setResult(ret);
         //finish();
     }
     void checkPermission(){
@@ -324,18 +324,19 @@ public class MainActivity extends AppCompatActivity {
             if(notGrantPermissions.isEmpty() == false) {
                 requestPermissions(notGrantPermissions.toArray(new String[]{}), SERVICE_PERMISSION_GROUP);
             }else{
-                setResult(SERVICE_PERMISSION_ALLOW);
+                //setResult(SERVICE_PERMISSION_ALLOW);
                 //finish();
             }
         }else{
-            setResult(SERVICE_PERMISSION_ALLOW);
+            //setResult(SERVICE_PERMISSION_ALLOW);
             //finish();
         }
 
+/* 서비스 구동..
         //servInt = new Intent(getBaseContext(),musicPlayer.class);
         //startService(servInt);
         //bindService(servInt,Sc,BIND_ADJUST_WITH_ACTIVITY);
-
+*/
         //find_music();
         //queryFiles(this);
     }
