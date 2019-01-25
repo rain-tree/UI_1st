@@ -276,33 +276,37 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private static final int SERVICE_PERMISSION_GROUP = 9130;
+    private static final int SERVICE_PERMISSION_ALLOW = 9131;
+    private static final int SERVICE_PERMISSION_DNEY = 9132;
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        //int ret = VPN_SERVICE_PERMISSION_ALLOW;
+        int ret = SERVICE_PERMISSION_ALLOW;
         int i=0;
         for(i = 0 ; i < permissions.length;i++) {
             Log.d("5. find_music","--------------------"+i);
-            //System.out.println(" requestcode " + VPN_SERVICE_PERMISSION_GROUP + " grantResult[0] " + grantResults[i] + " perm string[] " + permissions[i]);
+            System.out.println(" find_music requestcode " + SERVICE_PERMISSION_GROUP + " grantResult[0] " + grantResults[i] + " perm string[] " + permissions[i]);
             if(grantResults[i] < 0){
-                //ret = VPN_SERVICE_PERMISSION_DNEY;
+                ret = SERVICE_PERMISSION_DNEY;
                 break;
             }
         }
-        //setResult(ret);
+        setResult(ret);
         //finish();
     }
     void checkPermission(){
         String[] str_permissions = new String[]{
                 Manifest.permission.INTERNET,
                 Manifest.permission.ACCESS_NETWORK_STATE,
-                //Manifest.permission.INSTALL_PACKAGES,
+                Manifest.permission.INSTALL_PACKAGES,
                 Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.WAKE_LOCK,
                 Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-                //Manifest.permission.WRITE_SETTINGS,
-                //Manifest.permission.WRITE_SECURE_SETTINGS
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_SETTINGS,
+                Manifest.permission.WRITE_SECURE_SETTINGS,
+                Manifest.permission.READ_CONTACTS
         };
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -314,29 +318,26 @@ public class MainActivity extends AppCompatActivity {
                 if (this.checkSelfPermission(perm) != PackageManager.PERMISSION_GRANTED) {
                     Log.d("4. find_music","--------------------");
                     notGrantPermissions.add(perm);
+
                 }
             }
             if(notGrantPermissions.isEmpty() == false) {
-                //requestPermissions(notGrantPermissions.toArray(new String[]{}), VPN_SERVICE_PERMISSION_GROUP);
+                requestPermissions(notGrantPermissions.toArray(new String[]{}), SERVICE_PERMISSION_GROUP);
             }else{
-                //setResult(VPN_SERVICE_PERMISSION_ALLOW);
-                finish();
+                setResult(SERVICE_PERMISSION_ALLOW);
+                //finish();
             }
         }else{
-            //setResult(VPN_SERVICE_PERMISSION_ALLOW);
-            finish();
+            setResult(SERVICE_PERMISSION_ALLOW);
+            //finish();
         }
 
-        //if (ContextCompat.checkSelfPermission(MainActivity.ef, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-        //    ActivityCompat.requestPermissions( MainActivity.ef, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        //} else{
-            servInt = new Intent(getBaseContext(),musicPlayer.class);
-            startService(servInt);
-            bindService(servInt,Sc,BIND_ADJUST_WITH_ACTIVITY);
-            //init();
-        //}
-        find_music();
-        queryFiles(this);
+        //servInt = new Intent(getBaseContext(),musicPlayer.class);
+        //startService(servInt);
+        //bindService(servInt,Sc,BIND_ADJUST_WITH_ACTIVITY);
+
+        //find_music();
+        //queryFiles(this);
     }
 
     void find_music(){
