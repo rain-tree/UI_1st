@@ -21,6 +21,7 @@ import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.webkit.MimeTypeMap;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -57,6 +59,8 @@ import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE = "net.rainroot.ui_1st.MESSAGE";
+
     private TextView mTextMessage;
     private RelativeLayout mF_alarm_home;
     //private ListView mF_alarm_home;
@@ -69,9 +73,18 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase sqldb;
 
     private Vibrator mVibrator;
+    private FloatingActionButton mfab;
 
     private Context mContext;
-
+    /*
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, add_alarm.class);
+        EditText editText = (EditText) findViewById(R.id.textView);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+    */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -198,6 +211,18 @@ public class MainActivity extends AppCompatActivity {
 
         mVibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
         //vibrate_test();
+
+        mfab = (FloatingActionButton)findViewById(R.id.add_alarm_btn);
+        mfab.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        mp.start();
+                                        mVibrator.vibrate(100);
+                                        Intent intent = new Intent(getApplicationContext(), add_alarm.class);
+                                        //intent.putExtra(EXTRA_MESSAGE, message);
+                                        startActivity(intent);
+                                    }
+                                });
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_alarm_list);

@@ -23,6 +23,7 @@ public class musicPlayer extends Service {
     IBinder binder;
     public static  musicPlayer THIS;
     public musicPlayer() {
+
         binder = new servicesBinder(this);
     }
     public musicHandler handler;
@@ -117,6 +118,7 @@ public class musicPlayer extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
+
         return binder;
     }
 

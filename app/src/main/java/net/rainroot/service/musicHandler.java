@@ -422,6 +422,7 @@ public class musicHandler {
     };
 
     public void forScrollDown(){
+
         mediaplayer.setOnCompletionListener(null);
     }
 
