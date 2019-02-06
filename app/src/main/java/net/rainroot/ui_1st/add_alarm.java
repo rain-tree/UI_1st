@@ -14,7 +14,7 @@ public class add_alarm extends AppCompatActivity {
         Intent intent = getIntent();
 
         String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
+        //TextView textView = findViewById(R.id.textView);
+        //textView.setText(message);
     }
 }
