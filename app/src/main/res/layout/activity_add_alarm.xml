@@ -18,56 +18,134 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="150dp"
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bbutton_example_outline2"
+                style="@style/wrapping_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="Outline"
+                app:bootstrapBrand="danger"
+                app:bootstrapSize="lg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bbutton_example_corners3"
+                style="@style/wrapping_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginBottom="16dp"
-                android:text="Button"
+                android:layout_marginBottom="35dp"
+                android:text="Corners"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                app:layout_constraintVertical_bias="0.82" />
-
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="190dp"
-                android:layout_marginLeft="24dp"
-                android:text="Button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.82" />
+                app:roundedCorners="true"
+                app:showOutline="false" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="0dp"
+                android:layout_width="265dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginLeft="28dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginRight="28dp"
-                android:layout_marginBottom="18dp"
+                android:layout_marginBottom="28dp"
                 android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintBottom_toTopOf="@+id/bbutton_example_corners3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/use_focus_open_control"
+                style="@style/SwitchButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:kswTintColor="#D02E21"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.842"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bbutton_example_corners"
+                style="@style/wrapping_button"
+                android:text="Corners"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:roundedCorners="true"
+                app:showOutline="false" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bbutton_example_corners2"
+                style="@style/wrapping_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Corners"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg"
+                app:buttonMode="regular"
+                app:roundedCorners="true"
+                app:showOutline="false" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bbutton_example_size"
+                style="@style/wrapping_button"
+                android:text="Size"
+                app:bootstrapBrand="success"
+                app:bootstrapSize="lg" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bbutton_example_theme"
+                style="@style/wrapping_button"
+                android:text="Theme"
+                app:bootstrapBrand="info"
+                app:bootstrapSize="lg" />
+
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/bbutton_example_outline"
+                style="@style/wrapping_button"
+                android:text="Outline"
+                app:bootstrapBrand="danger"
+                app:bootstrapSize="lg" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
 
 </android.support.constraint.ConstraintLayout>
