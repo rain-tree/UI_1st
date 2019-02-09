@@ -2,140 +2,770 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".add_alarm">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/alram_one_day_set"
-                android:layout_width="265dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="알람 횟수"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/alram_one_day_many_time_btn"
-                style="@style/wrapping_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="20dp"
-                android:text="하루에 여러번"
-                app:bootstrapBrand="success"
-                app:bootstrapSize="lg"
-                app:buttonMode="regular"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:roundedCorners="true"
-                app:showOutline="false"
-                tools:ignore="MissingConstraints" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <com.beardedhen.androidbootstrap.BootstrapButton
-                android:id="@+id/alram_one_day_one_time_btn"
-                style="@style/wrapping_button"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
-                android:text="하루에 한 번"
-                app:bootstrapBrand="success"
-                app:bootstrapSize="lg"
-                app:buttonMode="regular"
+                    <TextView
+                        android:id="@+id/alram_one_day_set"
+                        android:layout_width="265dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="알람 횟수"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_one_day_many_time_btn"
+                        style="@style/wrapping_button"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="하루에 여러번"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="lg"
+                        app:buttonMode="regular"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:roundedCorners="true"
+                        app:showOutline="false"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_one_day_one_time_btn"
+                        style="@style/wrapping_button"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:text="하루에 한 번"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="lg"
+                        app:buttonMode="regular"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+
+                    <com.kyleduo.switchbutton.SwitchButton
+                        android:id="@+id/use_focus_open_control"
+                        style="@style/SwitchButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:kswTintColor="#D02E21"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:roundedCorners="true"
-                app:showOutline="true"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintStart_toStartOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon12"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="56dp"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginRight="28dp"
+                        android:text="+"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week6"
+                        android:layout_width="265dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginBottom="32dp"
+                        android:text="알람이름을 설정하세요."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_name"
+                        android:layout_width="265dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="알람 이름"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
 
 
-            <com.kyleduo.switchbutton.SwitchButton
-                android:id="@+id/use_focus_open_control"
-                style="@style/SwitchButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:kswTintColor="#D02E21"
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="match_parent"
+                android:layout_height="370dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
 
-        </android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.CardView>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="0dp"
-        android:layout_height="128dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon10"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="52dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginRight="25dp"
+                        android:text="+"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week3"
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon11"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="52dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginRight="25dp"
+                        android:text="+"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week5"
+                        app:layout_constraintTop_toBottomOf="@+id/divider2"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="월"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon2"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="화"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week_mon"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon3"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="수"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week_mon2"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon4"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="목"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week_mon3"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon5"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="금"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week_mon4"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon6"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="토"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week_mon5"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon7"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="일"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week_mon6"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week"
+                        android:layout_width="265dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="반복요일"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week2"
+                        android:layout_width="265dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="알림시간범위"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week4"
+                        android:layout_width="265dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="알람간격"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider2"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week3"
+                        android:layout_width="265dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:text="시간범위를 설정하세요."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week2"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week5"
+                        android:layout_width="265dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="알람간격을 설정하세요."
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week4"
+                        tools:ignore="MissingConstraints" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="379dp"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.352" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="379dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week3" />
+
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView4"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/alram_week9"
+                        android:layout_width="74dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="20dp"
+                        android:text="볼륨"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider4"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon16"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="36dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="+"
+                        app:bootstrapBrand="success"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.941"
+                        app:layout_constraintStart_toEndOf="@+id/alram_week8"
+                        app:layout_constraintTop_toBottomOf="@+id/divider3"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week8"
+                        android:layout_width="265dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="15dp"
+                        android:text="기본값(Cesium)"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week7"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_week7"
+                        android:layout_width="265dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="알람음"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider3"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon13"
+                        style="@style/wrapping_button"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="자동"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toStartOf="@+id/alram_week_mon14"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon14"
+                        style="@style/wrapping_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="벨"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toStartOf="@+id/alram_week_mon15"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon15"
+                        style="@style/wrapping_button"
+                        android:layout_width="46dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="진동"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_one_day_set3"
+                        android:layout_width="114dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="타입"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <View
+                        android:id="@+id/divider3"
+                        android:layout_width="379dp"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.27" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="390dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_week8"
+                        app:layout_constraintVertical_bias="0.051" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar"
+                        android:layout_width="174dp"
+                        android:layout_height="26dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginRight="28dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintEnd_toStartOf="@+id/seekBar"
+                        app:layout_constraintTop_toBottomOf="@+id/divider4"
+                        app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView5"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon20"
+                        style="@style/wrapping_button"
+                        android:layout_width="36dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="5"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toStartOf="@+id/alram_week_mon19"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_one_day_set3"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon19"
+                        style="@style/wrapping_button"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="172dp"
+                        android:layout_marginRight="172dp"
+                        android:text="10"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toStartOf="@+id/alram_week_mon18"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_one_day_set3"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon21"
+                        style="@style/wrapping_button"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="44dp"
+                        android:layout_marginRight="44dp"
+                        android:text="30"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toStartOf="@+id/alram_week_mon18"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_one_day_set3"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.beardedhen.androidbootstrap.BootstrapButton
+                        android:id="@+id/alram_week_mon18"
+                        style="@style/wrapping_button"
+                        android:layout_width="50dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="10dp"
+                        android:text="60"
+                        app:bootstrapBrand="success"
+                        app:bootstrapHeading="h5"
+                        app:bootstrapSize="sm"
+                        app:buttonMode="toggle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/alram_one_day_set3"
+                        app:roundedCorners="true"
+                        app:showOutline="true"
+                        tools:ignore="MissingConstraints" />
+
+                    <TextView
+                        android:id="@+id/alram_one_day_set3"
+                        android:layout_width="199dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="알람울림시간"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="392dp"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/alram_one_day_set2"
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:text="알람이름"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-    </android.support.v7.widget.CardView>
+        app:layout_constraintStart_toStartOf="@+id/scrollView2" />
 
 
 </android.support.constraint.ConstraintLayout>
