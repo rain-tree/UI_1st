@@ -1,1 +1,1 @@
-include ':app', ':AndroidBootstrap-release', ':library-release'
+include ':app', ':AndroidBootstrap-release', ':library-release', ':rangetimepickerdialog-release'

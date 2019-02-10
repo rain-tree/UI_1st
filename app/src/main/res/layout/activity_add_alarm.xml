@@ -121,7 +121,7 @@
                     android:layout_height="match_parent">
 
                     <com.beardedhen.androidbootstrap.BootstrapButton
-                        android:id="@+id/alram_week_mon12"
+                        android:id="@+id/alram_name_btn"
                         style="@style/wrapping_button"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -136,6 +136,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:roundedCorners="true"
                         app:showOutline="true"
+                        android:onClick="alarm_name_btn"
                         tools:ignore="MissingConstraints" />
 
                     <TextView
@@ -196,11 +197,12 @@
                         android:text=">"
                         app:bootstrapBrand="success"
                         app:bootstrapSize="sm"
-                        app:buttonMode="toggle"
+                        app:buttonMode="regular"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider"
                         app:roundedCorners="true"
                         app:showOutline="true"
+                        android:onClick="alarm_time_range_btn"
                         tools:ignore="MissingConstraints" />
 
                     <com.beardedhen.androidbootstrap.BootstrapButton
@@ -214,11 +216,12 @@
                         android:text=">"
                         app:bootstrapBrand="success"
                         app:bootstrapSize="sm"
-                        app:buttonMode="toggle"
+                        app:buttonMode="regular"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider2"
                         app:roundedCorners="true"
                         app:showOutline="true"
+                        android:onClick="alarm_time_step_btn"
                         tools:ignore="MissingConstraints" />
 
                     <com.beardedhen.androidbootstrap.BootstrapButton
@@ -480,7 +483,7 @@
                         android:text=">"
                         app:bootstrapBrand="success"
                         app:bootstrapSize="sm"
-                        app:buttonMode="toggle"
+                        app:buttonMode="regular"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider3"
                         app:roundedCorners="true"
@@ -741,13 +744,6 @@
 
                 </android.support.constraint.ConstraintLayout>
             </android.support.v7.widget.CardView>
-
-            <TimePicker
-                android:id="@+id/timePicker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints"
-                />
         </LinearLayout>
     </ScrollView>
 
