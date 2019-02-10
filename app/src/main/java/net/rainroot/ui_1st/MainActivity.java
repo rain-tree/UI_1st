@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
         //mListenerSb = (SwitchButton) findViewById(R.id.sb_use_listener);
         //mListenerFinish = (TextView) findViewById(R.id.listener_finish);
         //mListenerFinish.setVisibility(mListenerSb.isChecked() ? View.VISIBLE : View.INVISIBLE);
+        /*
         timePicker = (TimePicker)findViewById(R.id.timePicker);
         findViewById(R.id.alram_timetick_btn).setOnClickListener(new View.OnClickListener(){
             @Override
@@ -289,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
                 //mListenerFinish.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
             }
         });
+        */
         /* test 2019-02-10 e */
 
     }
