@@ -4,3 +4,7 @@ https://medium.com/android-develop-android/android개발-5-listview를-이용한
 
 안드로이드 내부 파일 검색 방법.
  *. http://dktfrmaster.blogspot.com/2016/10/mediastore.html
+
+
+각종 안드로이드 다이얼로그 [ 이뿌 ]
+https://code.tutsplus.com/tutorials/showing-material-design-dialogs-in-an-android-app--cms-30013

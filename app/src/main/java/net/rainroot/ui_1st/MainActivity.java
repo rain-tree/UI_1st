@@ -2,6 +2,9 @@ package net.rainroot.ui_1st;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -31,6 +34,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.webkit.MimeTypeMap;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
@@ -40,7 +44,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -48,6 +54,8 @@ import com.beardedhen.androidbootstrap.BootstrapAlert;
 import com.kyleduo.switchbutton.SwitchButton;
 
 import android.os.Vibrator;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import net.rainroot.service.Event;
 import net.rainroot.service.EventCall;
@@ -85,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     */
+    /* test 2019-02-10 s */
+    private TimePicker timePicker;
+    private SwitchButton mListenerSb;
+    /* test 2019-02-10 e */
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -252,7 +265,48 @@ public class MainActivity extends AppCompatActivity {
         //getMusicData();
         //getAllAudioFromDevice(this);
         checkPermission();
+
+        /* test 2019-02-10 s */
+        //mListenerSb = (SwitchButton) findViewById(R.id.sb_use_listener);
+        //mListenerFinish = (TextView) findViewById(R.id.listener_finish);
+        //mListenerFinish.setVisibility(mListenerSb.isChecked() ? View.VISIBLE : View.INVISIBLE);
+        timePicker = (TimePicker)findViewById(R.id.timePicker);
+        findViewById(R.id.alram_timetick_btn).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Calendar calendar = Calendar.getInstance();
+                if (android.os.Build.VERSION.SDK_INT >= 23) {
+                    calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),timePicker.getHour(), timePicker.getMinute(), 0);
+                } else {
+                    calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),timePicker.getCurrentHour(), timePicker.getCurrentMinute(), 0);
+                }
+                setAlarm(calendar.getTimeInMillis());
+            }
+        });
+        mListenerSb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //mListenerFinish.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+            }
+        });
+        /* test 2019-02-10 e */
+
     }
+
+    /* test 2019-02-10 s */
+    private void setAlarm(long time) {
+        //getting the alarm manager
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        //creating a new intent specifying the broadcast receiver
+        Intent i = new Intent(this, MyAlarm.class);
+        //creating a pending intent using the intent
+        PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, 0);
+        //setting the repeating alarm that will be fired every day
+        am.setRepeating(AlarmManager.RTC, time, AlarmManager.INTERVAL_DAY, pi);
+        Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show();
+    }
+    /* test 2019-02-10 e */
+
     MediaPlayer mp;
     public static MainActivity  ef;
 
